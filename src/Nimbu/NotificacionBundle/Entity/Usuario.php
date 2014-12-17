@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", indexes={@ORM\Index(name="fos_id", columns={"fos_id"}), @ORM\Index(name="persona_id", columns={"persona_id"})})
+ * @ORM\Table(name="usuario", indexes={@ORM\Index(name="negocio_id", columns={"negocio_id"}), @ORM\Index(name="fos_id", columns={"fos_id"}), @ORM\Index(name="persona_id", columns={"persona_id"})})
  * @ORM\Entity
  */
 class Usuario
@@ -40,6 +40,16 @@ class Usuario
      * })
      */
     private $persona;
+    
+        /**
+     * @var \Negocio
+     *
+     * @ORM\ManyToOne(targetEntity="Negocio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
+     * })
+     */
+    private $negocio;
 
 
 
@@ -97,5 +107,28 @@ class Usuario
     public function getPersona()
     {
         return $this->persona;
+    }
+    
+        /**
+     * Set negocio
+     *
+     * @param \Nimbu\NotificacionBundle\Entity\Negocio $negocio
+     * @return Usuario
+     */
+    public function setNegocio(\Nimbu\NotificacionBundle\Entity\Negocio $negocio = null)
+    {
+        $this->negocio = $negocio;
+
+        return $this;
+    }
+
+    /**
+     * Get negocio
+     *
+     * @return \Nimbu\NotificacionBundle\Entity\Negocio 
+     */
+    public function getNegocio()
+    {
+        return $this->negocio;
     }
 }

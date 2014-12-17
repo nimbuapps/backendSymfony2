@@ -8,7 +8,6 @@ use Nimbu\NotificacionBundle\Entity\Usuario;
 use Nimbu\NotificacionBundle\Form\UsuarioType;
 use Nimbu\NotificacionBundle\Entity\Persona;
 use Nimbu\NotificacionBundle\Entity\User;
-use Nimbu\NotificacionBundle\Entity\UsuarioNegocio;
 use Nimbu\NotificacionBundle\Entity\Negocio;
 
 /**
@@ -40,31 +39,30 @@ class UsuarioController extends Controller {
         $entityP = new Persona();
         $entity = new Usuario();
         $entityU = new User();
-//        $entityUsu = new Usuario();
-        $entityUsuN = new UsuarioNegocio();
+
         $entityN = new Negocio();
         $form = $this->createCreateForm($entityU, $entityN, $entityP);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            
+
             $entityP = $form['persona']->getData();
-$em->persist($entityP);
+            $em->persist($entityP);
 
             $entityU = $form['fos']->getData();
             $em->persist($entityU);
 
-            $entity->setFos($entityU);
-            $entity->setPersona($entityP);
-            $em->persist($entity);
+
 
             $entityN = $form['negocio']->getData();
             $em->persist($entityN);
 
-            $entityUsuN->setUsuario($entity);
-            $entityUsuN->setNegocio($entityN);
-            $em->persist($entityUsuN);
+            $entity->setFos($entityU);
+            $entity->setPersona($entityP);
+            $entity->setNegocio($entityN);
+            $em->persist($entity);
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('usuario_show', array('id' => $entity->getId())));
@@ -85,7 +83,7 @@ $em->persist($entityP);
      */
     private function createCreateForm($fos, $negocio, $persona) {
         $entity = array('fos' => $fos, 'negocio' => $negocio, 'persona' => $persona);
-        
+
         $form = $this->createForm(new UsuarioType(), $entity, array(
             'action' => $this->generateUrl('usuario_create'),
             'method' => 'POST',
@@ -101,14 +99,14 @@ $em->persist($entityP);
      *
      */
     public function newAction() {
-       
-         $entityP = new Persona();
+
+        $entityP = new Persona();
         $entity = new Usuario();
         $entityU = new User();
- 
+
         $entityN = new Negocio();
         $form = $this->createCreateForm($entityU, $entityN, $entityP);
-       
+
 
         return $this->render('NotificacionBundle:Usuario:new.html.twig', array(
                     'entity' => $entity,
@@ -145,14 +143,13 @@ $em->persist($entityP);
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('NotificacionBundle:Usuario')->find($id);
- $entityP = $em->getRepository('NotificacionBundle:Persona')->findOneBy(
-          array('id' => $entity->getPersona()->getId()), array('id' => 'DESC'));
-  $entityU = $em->getRepository('NotificacionBundle:User')->findOneBy(
-          array('id' => $entity->getFos()->getId()), array('id' => 'DESC'));
-  $entityUsuN = $em->getRepository('NotificacionBundle:UsuarioNegocio')->findOneBy(
-          array('usuario' => $entity), array('id' => 'DESC'));
+        $entityP = $em->getRepository('NotificacionBundle:Persona')->findOneBy(
+                array('id' => $entity->getPersona()->getId()), array('id' => 'DESC'));
+        $entityU = $em->getRepository('NotificacionBundle:User')->findOneBy(
+                array('id' => $entity->getFos()->getId()), array('id' => 'DESC'));
+      
         $entityN = $em->getRepository('NotificacionBundle:Negocio')->findOneBy(
-                array('id' => $entityUsuN->getNegocio()->getId()), array('id' => 'DESC'));
+                array('id' => $entity->getNegocio()->getId()), array('id' => 'DESC'));
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usuario entity.');
         }
@@ -194,25 +191,38 @@ $em->persist($entityP);
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('NotificacionBundle:Usuario')->find($id);
- $entityP = $em->getRepository('NotificacionBundle:Persona')->findOneBy(
-          array('id' => $entity->getPersona()->getId()), array('id' => 'DESC'));
-  $entityU = $em->getRepository('NotificacionBundle:User')->findOneBy(
-          array('id' => $entity->getFos()->getId()), array('id' => 'DESC'));
-  $entityUsuN = $em->getRepository('NotificacionBundle:UsuarioNegocio')->findOneBy(
-          array('usuario' => $entity), array('id' => 'DESC'));
+        $entityP = $em->getRepository('NotificacionBundle:Persona')->findOneBy(
+                array('id' => $entity->getPersona()->getId()), array('id' => 'DESC'));
+        $entityU = $em->getRepository('NotificacionBundle:User')->findOneBy(
+                array('id' => $entity->getFos()->getId()), array('id' => 'DESC'));
+    
         $entityN = $em->getRepository('NotificacionBundle:Negocio')->findOneBy(
-                array('id' => $entityUsuN->getNegocio()->getId()), array('id' => 'DESC'));
+                array('id' => $entity->getNegocio()->getId()), array('id' => 'DESC'));
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usuario entity.');
         }
 
         $editForm = $this->createEditForm($entityU, $entityN, $entityP, $entity);
 
-      $deleteForm = $this->createDeleteForm($id);
-  
+        $deleteForm = $this->createDeleteForm($id);
+
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $entityP = $editForm['persona']->getData();
+            $em->persist($entityP);
+
+            $entityU = $editForm['fos']->getData();
+            $em->persist($entityU);
+            
+   $entityN = $editForm['negocio']->getData();
+            $em->persist($entityN);
+            
+            $entity->setFos($entityU);
+            $entity->setPersona($entityP);
+            $entity->setNegocio($entityN);
+            $em->persist($entity);
+ 
             $em->flush();
 
             return $this->redirect($this->generateUrl('usuario_edit', array('id' => $id)));

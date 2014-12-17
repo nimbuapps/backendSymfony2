@@ -24,7 +24,7 @@ class UsuarioType extends AbstractType
                     'class' => 'NotificacionBundle:Negocio',
                     'property' => 'nombre',
                     'label' => 'Negocio',
-                    'mapped' => false
+               
                 ))
                 
         ;

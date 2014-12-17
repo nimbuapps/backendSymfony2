@@ -168,3 +168,9 @@ fbd905,::1,PUT,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/
 89a119,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418843273,
 038d63,::1,PUT,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/update,1418843309,
 33ce93,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418843311,
+507174,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418843699,
+20af61,::1,PUT,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/update,1418843710,
+9750da,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418843712,
+9c09b7,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418844590,b0bd7e
+b0bd7e,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418844590,
+81f6c2,::1,GET,http://localhost/nimbu/backendSymfony2/web/app_dev.php/usuario/8/edit,1418844677,
