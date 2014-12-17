@@ -1,0 +1,25 @@
+notificacion_usuario:
+    resource: "@NotificacionBundle/Resources/config/routing/usuario.yml"
+    prefix:   /usuario
+
+notificacion_persona:
+    resource: "@NotificacionBundle/Resources/config/routing/persona.yml"
+    prefix:   /persona
+
+notificacion_pack:
+    resource: "@NotificacionBundle/Resources/config/routing/pack.yml"
+    prefix:   /pack
+
+notificacion_notificacion:
+    resource: "@NotificacionBundle/Resources/config/routing/notificacion.yml"
+    prefix:   /notificacion
+
+notificacion_negocio:
+    resource: "@NotificacionBundle/Resources/config/routing/negocio.yml"
+    prefix:   /negocio
+
+
+
+notificacion_homepage:
+    path:     /
+    defaults: { _controller: NotificacionBundle:Default:enviarMensaje }

@@ -1,0 +1,30 @@
+negocio:
+    path:     /
+    defaults: { _controller: "NotificacionBundle:Negocio:index" }
+
+negocio_show:
+    path:     /{id}/show
+    defaults: { _controller: "NotificacionBundle:Negocio:show" }
+
+negocio_new:
+    path:     /new
+    defaults: { _controller: "NotificacionBundle:Negocio:new" }
+
+negocio_create:
+    path:     /create
+    defaults: { _controller: "NotificacionBundle:Negocio:create" }
+    requirements: { _method: post }
+
+negocio_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NotificacionBundle:Negocio:edit" }
+
+negocio_update:
+    path:     /{id}/update
+    defaults: { _controller: "NotificacionBundle:Negocio:update" }
+    requirements: { _method: post|put }
+
+negocio_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NotificacionBundle:Negocio:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+persona:
+    path:     /
+    defaults: { _controller: "NotificacionBundle:Persona:index" }
+
+persona_show:
+    path:     /{id}/show
+    defaults: { _controller: "NotificacionBundle:Persona:show" }
+
+persona_new:
+    path:     /new
+    defaults: { _controller: "NotificacionBundle:Persona:new" }
+
+persona_create:
+    path:     /create
+    defaults: { _controller: "NotificacionBundle:Persona:create" }
+    requirements: { _method: post }
+
+persona_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NotificacionBundle:Persona:edit" }
+
+persona_update:
+    path:     /{id}/update
+    defaults: { _controller: "NotificacionBundle:Persona:update" }
+    requirements: { _method: post|put }
+
+persona_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NotificacionBundle:Persona:delete" }
+    requirements: { _method: post|delete }

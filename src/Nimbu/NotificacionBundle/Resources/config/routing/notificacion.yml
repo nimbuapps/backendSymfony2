@@ -1,0 +1,30 @@
+notificacion:
+    path:     /
+    defaults: { _controller: "NotificacionBundle:Notificacion:index" }
+
+notificacion_show:
+    path:     /{id}/show
+    defaults: { _controller: "NotificacionBundle:Notificacion:show" }
+
+notificacion_new:
+    path:     /new
+    defaults: { _controller: "NotificacionBundle:Notificacion:new" }
+
+notificacion_create:
+    path:     /create
+    defaults: { _controller: "NotificacionBundle:Notificacion:create" }
+    requirements: { _method: post }
+
+notificacion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NotificacionBundle:Notificacion:edit" }
+
+notificacion_update:
+    path:     /{id}/update
+    defaults: { _controller: "NotificacionBundle:Notificacion:update" }
+    requirements: { _method: post|put }
+
+notificacion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NotificacionBundle:Notificacion:delete" }
+    requirements: { _method: post|delete }

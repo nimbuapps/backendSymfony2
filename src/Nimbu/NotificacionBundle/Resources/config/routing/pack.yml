@@ -1,0 +1,30 @@
+pack:
+    path:     /
+    defaults: { _controller: "NotificacionBundle:Pack:index" }
+
+pack_show:
+    path:     /{id}/show
+    defaults: { _controller: "NotificacionBundle:Pack:show" }
+
+pack_new:
+    path:     /new
+    defaults: { _controller: "NotificacionBundle:Pack:new" }
+
+pack_create:
+    path:     /create
+    defaults: { _controller: "NotificacionBundle:Pack:create" }
+    requirements: { _method: post }
+
+pack_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NotificacionBundle:Pack:edit" }
+
+pack_update:
+    path:     /{id}/update
+    defaults: { _controller: "NotificacionBundle:Pack:update" }
+    requirements: { _method: post|put }
+
+pack_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NotificacionBundle:Pack:delete" }
+    requirements: { _method: post|delete }
