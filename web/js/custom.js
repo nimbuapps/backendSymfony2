@@ -1,188 +1,67 @@
-// funcion que modifica una tupla en las tablas de recepcion, segun este o no ausente un paciente.
-function ausente(id, pather, boton, texto) {
-    $(document).ready(function() {
-
-        $("#ausente" + id).click(function() {
-//            alert("#ausente" + id);
-            if ($("#ausente" + id).is(':checked')) {
-                $('#trausente' + id).addClass("warning");
-                $('#tdausente' + id).text(texto);
-            } else {
-                $('#trausente' + id).removeClass("warning");
-                $('#tdausente' + id).html('<a class=\"label label-danger\" href=\"' + pather + '\">' + boton + '</a>');
-            }
-        });
-
+//Nav
+jQuery(document).ready(function ($){
+    jQuery('.navbar .nav > li > a, .footer-nav > li > a').click(function(){
+        jQuery.scrollTo( $(this).attr("href"), {
+			duration: 1000,
+			easing:'easeInOutExpo'			
+		});
+		return false;
     });
-
-}
-
-// oculta el bloque contiguo con informacion sobre el tipo de donacion
-$('#tipodonac').change(function() {
-    opt = $(this).val();
-    if (opt === "Voluntaria") {
-        $('#segundonacion').css({display: "none"});
-    } else if (opt === "Reposicion" || opt === "Aferesis") {
-        $('#segundonacion').css({display: "initial"});
-    }
-// fin del bloque
 });
 
-// oculta los campos cuando el diferimento es negativo 
-$('#determinardif').change(function() {
-    opt = $(this).val();
-    if (opt === "no") {
-        $('#diferimentoPositivo').css({display: "none"});
-        $('.diferido').css({display: "none"});
-        document.getElementById('difDesde').required = false;
-        document.getElementById('difHasta').required = false;
-    } else if (opt === "si") {
-        $('#diferimentoPositivo').css({display: "initial"});
-        $('.diferido').css({display: "initial"});
-        document.getElementById('difDesde').required = true;
-        document.getElementById('difHasta').required = true;
-    }
+var tpj=jQuery;
+tpj.noConflict();
+
+tpj(document).ready(function() {
+
+if (tpj.fn.cssOriginal!=undefined)
+tpj.fn.css = tpj.fn.cssOriginal;
+
+tpj('.banner').revolution(
+	{
+		delay:5000,
+		startheight:520,
+		startwidth:1170,
+
+
+		hideThumbs:200,
+
+		thumbWidth:100,							// Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+		thumbHeight:50,
+		thumbAmount:5,
+
+		navigationType:"bullet",				// bullet, thumb, none
+		navigationArrows:"nexttobullets",				// nexttobullets, solo (old name verticalcentered), none
+
+		navigationStyle:"round-old",				// round,square,navbar,round-old,square-old,navbar-old, or any from the list in the docu (choose between 50+ different item), custom
+
+
+		navigationHAlign:"center",				// Vertical Align top,center,bottom
+		navigationVAlign:"bottom",					// Horizontal Align left,center,right
+		navigationHOffset:0,
+		navigationVOffset:-30,
+
+		soloArrowLeftHalign:"left",
+		soloArrowLeftValign:"top",
+		soloArrowLeftHOffset:20,
+		soloArrowLeftVOffset:0,
+
+		soloArrowRightHalign:"right",
+		soloArrowRightValign:"top",
+		soloArrowRightHOffset:20,
+		soloArrowRightVOffset:0,
+
+		touchenabled:"on",						// Enable Swipe Function : on/off
+		onHoverStop:"off",						// Stop Banner Timet at Hover on Slide on/off
+
+		stopAtSlide:-1,							// Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+		stopAfterLoops:-1,						// Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+		hideCaptionAtLimit:0,					// It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+		hideAllCaptionAtLilmit:0,				// Hide all The Captions if Width of Browser is less then this value
+		hideSliderAtLimit:0,					// Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+		shadow:1,								//0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+		fullWidth:"off"							// Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+	});
 });
-
-//        Oculta los campos de diferimiento en la seccion de Inmunohematologia.
-$('#inmunoDif').change(function() {
-    opt = $(this).val();
-    if (opt === "no") {
-        $('.diferido').css({display: "none"});
-    } else if (opt === "si") {
-        $('.diferido').css({display: "initial"});
-    }
-});
-
-//   filtra los campos segun sean terminados o pendientes.
-
-// filtros de inmunohematología
-
-var terminado = jQuery.noConflict();
-terminado('#terminados').click(function() {
-    terminado('.terminados').css({display: "table-row"});
-    terminado('.pendientes').css({display: "none"});
-    terminado('.sindatos').css({display: "none"});
-});
-var pendiente = jQuery.noConflict();
-pendiente('#pendientes').click(function() {
-    pendiente('.terminados').css({display: "none"});
-    pendiente('.pendientes').css({display: "table-row"});
-    pendiente('.sindatos').css({display: "none"});
-});
-var sindatos = jQuery.noConflict();
-sindatos('#sindatos').click(function() {
-    sindatos('.terminados').css({display: "none"});
-    sindatos('.pendientes').css({display: "none"});
-    sindatos('.sindatos').css({display: "table-row"});
-});
-var todos = jQuery.noConflict();
-todos('#todos').click(function() {
-    todos('.terminados').css({display: "table-row"});
-    todos('.pendientes').css({display: "table-row"});
-    todos('.sindatos').css({display: "table-row"});
-});
-
-
-
-// fin comentario temporal
-
-//calcular la edad de una persona 
-//recibe la fecha como un string en formato español 
-//devuelve un entero con la edad. Devuelve false en caso de que la fecha sea incorrecta o mayor que el dia actual 
-function calcular_edad(dia, mes, ano) {
-    var year = ano;
-    var month = mes;
-    var day = dia;
-    //calculo la fecha de hoy 
-    hoy = new Date();
-    //alert(hoy) 
-
-    //compruebo que los ano, mes, dia son correctos 
-    if (isNaN(year))
-        return false;
-
-    if (isNaN(month))
-        return false;
-
-    if (isNaN(day))
-        return false;
-
-    //si el año de la fecha que recibo solo tiene 2 cifras hay que cambiarlo a 4 
-    if (ano <= 99) {
-        ano += 1900;
-    }
-
-
-    //resto los años de las dos fechas 
-    edad = hoy.getFullYear() - year - 1; //-1 porque no se si ha cumplido años ya este año 
-
-    //si resto los meses y me da menor que 0 entonces no ha cumplido años. Si da mayor si ha cumplido 
-    if (hoy.getMonth() + 1 - month < 0) //+ 1 porque los meses empiezan en 0 
-        return edad;
-    if (hoy.getMonth() + 1 - month > 0)
-        return edad + 1;
-
-    //entonces es que eran iguales. miro los dias 
-    //si resto los dias y me da menor que 0 entonces no ha cumplido años. Si da mayor o igual si ha cumplido 
-    if (hoy.getUTCDate() - day >= 0)
-        return edad + 1;
-
-    return edad;
-}
-
-jQuery(function($) {
-    $("#telefono1").mask("(999) 9999999");
-    $("#celular1").mask("(999) 159999999");
-});
-
-
-function fn_buscar() {
-    // var str = $("#frm_buscar").serialize();
-    var texto = document.getElementById('Btnciudad').value;
-    $.ajax({
-        url: 'ajax/buscar/' + texto,
-        type: 'get',
-        success: function(data) {
-            $("#aqui").html(data);
-        }
-    });
-}
-
-function fn_buscar_EntreRios() {
-    // var str = $("#frm_buscar").serialize();
-    var textoes = document.getElementById('BtnciudadER').value;
-    $.ajax({
-        url: 'entrerios/buscar/' + textoes,
-        type: 'get',
-        success: function(data) {
-            $("#aquiER").html(data);
-        }
-    });
-}
-
-
-function fn_buscar_otras() {
-    // var str = $("#frm_buscar").serialize();
-    var texto = document.getElementById('Btnciudad').value;
-    $.ajax({
-        url: 'ajax/buscar/otras/' + texto,
-        type: 'get',
-        success: function(data) {
-            $("#aqui").html(data);
-        }
-    });
-}
-
-function confirm(event, msg) {
-    var evt = event;
-    event.preventDefault();
-    alertify.confirm(msg, function(e) {
-        if (e) {
-            evt.currentTarget.submit();
-            return true;
-        } else {
-            return false;
-        }
-    });
-}

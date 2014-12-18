@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% block meta%}
+        {% block meta %}
             <meta http-equiv="Content-Type" content="text/html" charset=utf-8" />
         {% endblock%}
         <title>{% block title %}Nimbu Notificaciones Push{% endblock %}</title>
@@ -15,40 +15,103 @@
             <link href="{{ asset('css/bootstrap-select.min.css') }}" type="text/css" rel="stylesheet" />
             <link href="{{ asset('css/docs.min.css') }}" type="text/css" rel="stylesheet" />
             <link href="{{ asset('css/font-awesome.css') }}" type="text/css" rel="stylesheet" />
-
+            <link href="{{ asset('css/settings.css') }}" type="text/css" rel="stylesheet" />
 
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body {% block estilo_body %}{% endblock %}>
-        <div class="container">
-            {% block body %}
-                <div class="container">
-                    Esto es el body                
-                </div>
-            {% endblock %}               
+    <body class="page-aqua">
+        <div id="back">
         </div>
-        {% block footer %}
-            Estos es el footer
-        {% endblock %}
-        {% block javascripts %}
-            <script src="{{ asset('js/jquery-1.11.1.js') }}"></script>
-            <script src="{{ asset('js/ajax.js') }}"></script>
-            <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>            
-            <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.min.js') }}"></script>      
-            <script src="{{ asset('js/bootstrap-select.js') }}"></script>
-            <script src="{{ asset('js/maskedinput.js') }}"></script>
-            <script src="{{ asset('js/custom.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/alertify/alertify.js') }}"></script>
-            <link rel="stylesheet" href="{{ asset('js/alertify/alertify.core.css') }}" />
-            <link rel="stylesheet" href="{{ asset('js/alertify/alertify.default.css') }}" />
-            <!-- Bootstrap 3 theme -->
-            <link rel="stylesheet" href="{{ asset('js/alertify/alertify.bootstrap3.css') }}" />
-          
-        {% endblock %}
-        {% block javascriptsAdd %}
+        <!-- Navigation -->
+        <header>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://favethemes.com/demo/landlr/aqua.html#"><i class="fa fa-rocket"></i> Landlr</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row1">Home</a></li>
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row2">Project</a></li>
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row3">Features</a></li>
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row4">Specifications</a></li>
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row5">Pricing</a></li>
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row6">Testimonials</a></li>
+                            <li><a href="http://favethemes.com/demo/landlr/aqua.html#row7">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </header>
+        <!-- Home -->
+        {% block body %}
+            <section class="wrapper home">
+                <a class="anchor" id="row1"></a>
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center col-sm-12 col-lg-12">
+                            <hgroup class="main-title white">
+                                <h2>Landlr is the all-in-one landing page</h2>
+                                <h3>The best solution for launching awesome applications and cool web projects.</h3>
+                            </hgroup>
+                            <a class="btn btn-large btn-tomato uppercase btn-default">Buy this template</a>
+                            <a class="btn btn-large btn-transparent uppercase btn-default">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% block footer %}
+                <footer>
+                    <div class="container">
+                        <div class="row">
+                            <div class="pull-right col-sm-10 col-lg-10">
+                                <ul class="text-right footer-nav list-unstyled list-inline">
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row1">Home</a></li>
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row2">Project</a></li>
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row3">Features</a></li>
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row4">Specifications</a></li>
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row5">Pricing</a></li>
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row6">Testimonials</a></li>
+                                    <li><a href="http://favethemes.com/demo/landlr/aqua.html#row7">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="pull-left copyright col-sm-2 col-lg-2">
+                                Landlr - Copyright 2013
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}    
+            </footer>
+            {% block javascripts %}
+                <!-- Javascript  -->
+                <script src="{{ asset('js/jquery-1.11.1.js') }}"></script>
+                <script src="{{ asset('js/ajax.js') }}"></script>
+                <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>            
+                <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+                <script src="{{ asset('js/bootstrap.min.js') }}"></script>      
+                <script src="{{ asset('js/bootstrap-select.js') }}"></script>
+                {#            <script src="{{ asset('js/maskedinput.js') }}"></script>#}
+                <script src="{{ asset('js/custom.js') }}"></script>
+                <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+                <script src="{{ asset('js/jquery.themepunch.revolution.min.js') }}"></script>
+                <script src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('js/alertify/alertify.js') }}"></script>
+                <link rel="stylesheet" href="{{ asset('js/alertify/alertify.core.css') }}" />
+                <link rel="stylesheet" href="{{ asset('js/alertify/alertify.default.css') }}" />
+                <!-- Bootstrap 3 theme -->
+                <link rel="stylesheet" href="{{ asset('js/alertify/alertify.bootstrap3.css') }}" />
+            {% endblock %}
+            {% block javascriptsAdd %}
 
+            {% endblock %}
         {% endblock %}
     </body>
 </html>
