@@ -6,7 +6,7 @@ app/config/parameters.yml
 app/cache/*
 app/logs/*
 vendor/*
-
+app/*
 web/uploads/*
 
 # -- Composer -----------------------------------------
